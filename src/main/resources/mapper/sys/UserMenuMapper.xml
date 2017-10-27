@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jwy.mapper.sys.UserMenuMapper">
+
+	<select id="selectMenuListByUserId" resultType="cn.com.jwy.model.sys.Menu">
+		SELECT 
+		    m.`id`,
+		    m.`menu_name` menuName,
+		    m.`menu_type` menuType,
+		    m.`url`,
+		    m.`authority`,
+		    m.`pid`,
+		    m.`sort`,
+		    m.`remark`,
+		    m.`admin_type` adminType,
+		    m.`add_user` addUser,
+		    m.`add_time` addTime,
+		    m.`edit_user` editUser,
+		    m.`edit_time` editTime,
+		    m.`del`
+		FROM `sys_user_menu` um 
+		JOIN `sys_menu` m ON m.`id` = um.`menu_id`
+		WHERE m.`del` = 0 AND m.`admin_type` = 0 AND um.`user_id` = #{userId}
+		ORDER BY m.`sort` ASC 
+	</select>
+	
+	<select id="selectMenuListByTwoUserId" resultType="cn.com.jwy.dto.sys.user.getmenus.MenuDto">
+		SELECT 
+		    m.`id`,
+		    m.`menu_name` menuName,
+		    m.`menu_type` menuType,
+		    m.`pid`,
+		    m.`sort`,
+		    m.`remark`
+		    <if test="userId != null">
+		    	,IF((SELECT COUNT(um2.`menu_id`) FROM sys_user_menu um2 WHERE um2.`user_id` = #{userId} AND um2.`menu_id` = m.id 
+		    	AND NOT EXISTS (SELECT um3.`menu_id` FROM sys_user_menu um3 WHERE um3.`user_id` = #{loginUserId} AND um3.`menu_id` = um2.`menu_id`)) > 0, TRUE, FALSE) alone
+		    </if>
+		FROM `sys_user_menu` um 
+		JOIN `sys_menu` m ON m.`id` = um.`menu_id`
+		WHERE m.`del` = 0 AND m.`admin_type` = 0 AND (um.`user_id` = #{loginUserId} <if test="userId != null">OR um.`user_id` = #{userId}</if>)
+		ORDER BY m.`sort` ASC 
+	</select>
+
+</mapper>

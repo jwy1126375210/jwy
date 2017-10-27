@@ -1,0 +1,36 @@
+/**
+ * @filename index.css
+ * @author Wang Chijun[2017-05-23]
+ * @update
+ * @version v1.0
+ * @description earlyWarning css
+ */
+
+/* search box css */
+.m-search-box{position: relative; height: 40px; padding: 10px 0;}
+.m-search-box input.search{width: 146px; height: 38px; line-height: 38px; padding-left: 10px; padding-right: 40px; background:#fff; border: 1px solid #d3d3d3;}
+.m-search-box .u-button{position: absolute; right: 0; height: 40px;}
+.m-search-box .u-button button[name="search"]{width: 40px; height: 40px; background: none; color: #3399ff;}
+.m-search-box .sch_senior{display: inline-block; line-height: 40px; margin-right:10px; color: #3399ff;}
+.m-search-box .sch_senior i{font-size: 12px; margin-left: 3px;}
+
+/* filter box css */
+.m-filter .item-option.region a, .m-filter .item-option.warnAddress a{width: 160px; text-indent: 4px; border: 1px solid #d8d8d8;}
+.m-filter .item-option.region{position: relative;}
+.m-filter .item-option.region .regionList, .m-filter .item-option.warnAddress .addressList{display:none; position: absolute; z-index: 9999;}
+.m-filter .item-option.region .regionList.show, .m-filter .item-option.warnAddress .addressList.show{display:block;}
+.m-filter .item-option.region .regionList ul, .m-filter .item-option.warnAddress .addressList ul{width:100%;}
+.m-filter .item-option.region .regionList div.provScroll, .m-filter .item-option.region .regionList div.cityScroll, .m-filter .item-option.warnAddress .addressList div.provScroll, .m-filter .item-option.warnAddress .addressList div.cityScroll{position:absolute; left: 64px; top: -1px; max-height:360px; width:160px; overflow-y:auto; background:#fff; border: 1px solid #d8d8d8;}
+.m-filter .item-option.region .regionList div.cityScroll, .m-filter .item-option.warnAddress .addressList div.cityScroll{left: 210px;}
+.m-filter .item-option.region .regionList li, .m-filter .item-option.warnAddress .addressList li{height:36px; line-height:36px; padding-left:15px; background:#fff; cursor:pointer; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+.m-filter .item-option.region .regionList li ul, .m-filter .item-option.warnAddress .addressList li ul{display:none;}
+.m-filter .item-option.region .regionList li:hover, .m-filter .item-option.warnAddress .addressList li:hover{background:#f9f9f9;}
+.m-filter .item-option.region .regionList li ul.show, .m-filter .item-option.warnAddress .addressList li ul.show{display:block;}
+.m-filter .item-option.region .regionList li.s-crt, .m-filter .item-option.warnAddress .addressList li.s-crt{color: #3399ff;}
+.m-filter .item-option.companyState label{color: #d8d8d8;}
+.m-filter .item-option.warnDate input{width:198px; cursor: pointer;}
+.m-filter .item-option.macAddress input[name="mac"]{width: 228px;}
+
+/* companyData css */
+.companyData{margin-top: 10px; padding-bottom: 30px;}
+.m-listData{margin-bottom: 30px;}

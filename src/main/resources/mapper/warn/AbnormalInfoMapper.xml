@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jwy.mapper.warn.AbnormalInfoMapper">
+
+	<select id="selectEnterpriseInfoList" resultType="cn.com.jwy.dto.warn.EnterpriseInfo">
+		select 
+			abnomal.region_code region,
+			abnomal.office_name taxStation,
+			abnomal.company_name companyName,
+			abnomal.type taxPayer,
+			abnomal.tax_num taxNum,
+			abnomal.ext_num extNum,
+			abnomal.grant_region allowRegion,
+			abnomal.warn_area recRegion,
+			abnomal.f_status fence,
+			abnomal.status comState
+		from tb_abnormal_info abnomal  
+		where 1=1 ${whereSql}
+		limit #{start},#{size}
+	</select>
+	
+	<select id="selectEnterpriseInfoCount" resultType="java.lang.Integer">
+		select count(*)
+		from tb_abnormal_info abnomal  
+		where 1=1 ${whereSql}
+	</select>
+
+</mapper>

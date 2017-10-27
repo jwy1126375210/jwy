@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jwy.mapper.sys.MenuMapper">
+
+	<select id="selectRightList" resultType="java.lang.String">
+		SELECT m.`authority` FROM `sys_menu` m WHERE m.`del` = 0 AND m.`menu_type` = 2
+	</select>
+
+</mapper>

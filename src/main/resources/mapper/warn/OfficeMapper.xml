@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jwy.mapper.warn.OfficeMapper">
+
+	<select id="selectOfficeListByCityCode" resultType="cn.com.jwy.model.warn.Office">
+		select 
+			id,
+			name 
+		from tb_office poff 
+		where poff.p_id = (select off.id as officeCode from tb_office off where off.area_id = #{cityCode})
+	</select>
+	
+	<select id="selectOfficeListByProvinceCode" resultType="cn.com.jwy.model.warn.Office">
+		select 
+			a.id,
+			a.`name`
+		from tb_office a 
+		join (select d.id,d.`name` from tb_office c join tb_office d on c.id = d.p_id where c.area_id = #{provinceCode}) b on a.p_id = b.id
+	</select>
+	
+	<select id="selectChildByOfficeIds" resultType="cn.com.jwy.model.warn.Office">
+		SELECT 
+			o.`id`,
+			o.`name`,
+			o.`short_name` shortName,
+			o.`p_id` pId,
+			o.`area_id` areaId
+		FROM `tb_office` o 
+		WHERE FIND_IN_SET(o.`id`,`tb_office_getChildList`(#{officeIds})) 
+		<if test="loginUserId != null">
+			AND EXISTS (SELECT uo.`office_id` FROM `sys_user_office` uo WHERE uo.`user_id` = #{loginUserId} AND uo.`office_id` = o.`id`)
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jwy.mapper.sys.UserMapper">
+
+	<select id="selectMaxIdNo" resultType="java.lang.Integer">
+		SELECT MAX(`id_no`) FROM `sys_user`
+	</select>
+	
+	<select id="selectUserList" resultType="cn.com.jwy.dto.sys.user.getuserlist.UserDto">
+		SELECT 
+			u.`id`,
+			u.`id_no` idNo,
+			u.`username`,
+			u.`password`,
+			u.`user_type` userType,
+			u.`real_name` realName,
+			u.`phone`,
+			u.`email`,
+			u.`remark`,
+			u.`is_valid` isValid,
+			u.`add_user` addUser,
+			u.`add_time` ADDTIME,
+			u.`edit_user` editUser,
+			u.`edit_time` editTime,
+			u.`del`,
+			(SELECT GROUP_CONCAT(m.`menu_name`) FROM `sys_menu` m,`sys_user_menu` um WHERE m.`id` = um.`menu_id` AND um.`user_id` = u.`id`) menuList,
+			(SELECT GROUP_CONCAT(uo.`office_name`) FROM `sys_user_office` uo WHERE uo.`user_id` = u.`id`) officeList 
+		FROM `sys_user` u
+		<where>
+			u.`del` = 0 
+			<if test="loginUserType == 2">
+				AND NOT EXISTS (SELECT uo.`office_id` FROM `sys_user_office` uo WHERE uo.`user_id` = u.`id` AND uo.`office_id` NOT IN 
+				<foreach collection="officeIdList" item="item" open="(" separator="," close=")">#{item}</foreach>) 
+			</if>
+			<if test="userType != null">
+				AND u.`user_type` = #{userType}
+			</if>
+			<if test="isValid != null">
+				AND u.`is_valid` = #{isValid}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				AND (u.`username` LIKE '%#{keyword}%' OR u.`real_name` LIKE '%#{keyword}%' OR u.`phone` LIKE '%#{keyword}%')
+			</if>
+		</where>   
+		ORDER BY u.`id` DESC
+		LIMIT #{start},#{size}
+	</select>
+	
+	<select id="selectUserCount" resultType="java.lang.Integer">
+		SELECT COUNT(u.`id`)
+		FROM `sys_user` u
+		<where>
+			u.`del` = 0 
+			<if test="loginUserType == 2">
+				AND NOT EXISTS (SELECT uo.`office_id` FROM `sys_user_office` uo WHERE uo.`user_id` = u.`id` AND uo.`office_id` NOT IN 
+				<foreach collection="officeIdList" item="item" open="(" separator="," close=")">#{item}</foreach>) 
+			</if>
+			<if test="userType != null">
+				AND u.`user_type` = #{userType}
+			</if>
+			<if test="isValid != null">
+				AND u.`is_valid` = #{isValid}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				AND (u.`username` LIKE '%#{keyword}%' OR u.`real_name` LIKE '%#{keyword}%' OR u.`phone` LIKE '%#{keyword}%')
+			</if>
+		</where>   
+	</select>
+
+</mapper>

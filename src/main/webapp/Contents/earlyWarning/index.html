@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="renderer" content="webkit" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="stylesheet" type="text/css" href="../static/style/base.css" />
+	<link rel="stylesheet" type="text/css" href="../static/style/common.css" />
+	<title>电子围栏预警</title>
+	<link rel="stylesheet" type="text/css" href="style/index.css" />
+</head>
+
+<body class="g-box">
+	<!-- header -->
+	<div class="g-header">
+		<div class="g-main">
+			<div class="m-logo"><h1>电子围栏实时预警</h1></div>
+			<div class="m-search-box f-fr">
+				<a class="sch_senior f-fl" href="javascript:void(0);">筛选<i class="iconfont icon-zhankai"></i></a>
+				<input class="search f-fl" type="text" name="search_input" id="search_companyname" style="width:246px;" placeholder="请输入企业名称或完整的企业税号">
+				<div class="u-button btn-search f-fl">
+					<button type="submit" name="search"><i class="iconfont">&#xe758;</i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content -->
+	<div class="g-content">
+		<div class="g-main">
+			<!-- 筛选 -->
+			<div class="m-filter m-grid">
+				<div class="m-item-list">
+					<!-- 企业属地 -->
+					<div class="region item-option f-fl">
+						<label>企业属地</label>
+						<a href="javascript:void(0);"><i class="iconfont">&#xe759;</i></a>
+						<div class="regionList"></div>
+					</div>
+					<!-- 税务机关 -->
+					<div class="taxStation item-option f-fl">
+						<label>税务机关</label>
+						<select name="taxStation" data-func="getTaxStation" data-css="width:285px;">
+							<option value="">全部</option>
+						</select>
+					</div>
+					<!-- 围栏状态 -->
+					<div class="fenceState item-option f-fl">
+						<label>围栏状态</label>
+						<select name="fenceState" data-css="width:145px;">
+							<option value="0">异地开票</option>
+						</select>
+					</div>
+					<!-- 纳税人标识 -->
+					<div class="taxPayer item-option f-fl">
+						<label>纳税人标识</label>
+						<select data-css="width:145px;">
+							<option value="">全部</option>
+							<option value="1">一般纳税人</option>
+							<option value="0">小规模纳税人</option>
+						</select>
+					</div>
+					<div class="f-clear"></div>
+				</div>
+				<div class="m-item-list">
+					<!-- 企业状态 -->
+					<div class="companyState item-option f-fl">
+						<label>企业状态</label>
+						<select name="companyState" data-css="width:145px;">
+							<option value="">全部</option>
+						</select>
+					</div>
+					<!-- 预警地址 -->
+					<div class="warnAddress item-option f-fl">
+						<label>预警地址</label>
+						<a href="javascript:void(0);" data-value="">全国<i class="iconfont">&#xe759;</i></a>
+						<div class="addressList"></div>
+					</div>
+					<!-- 预警日期 -->
+					<div class="warnDate item-option f-fl">
+						<label>预警日期</label>
+						<input type="text" readonly="readonly" class="startTime" />
+						<i></i>
+						<b>-</b>
+						<input type="text" readonly="readonly" class="endTime" />
+					</div>
+					<div class="f-clear"></div>
+				</div>
+				<div class="m-item-list">
+					<!-- MAC地址 -->
+					<div class="macAddress item-option f-fl">
+						<label>MAC地址</label>
+						<!--<input type="text" name="sameMac" placeholder="相同MAC企业数量"/>-->
+						<input type="text" name="mac" placeholder="请输入指定的MAC地址" />
+					</div>
+					<!-- 按钮 -->
+					<div class="actionBox item-option f-fr">
+						<a href="javascript:void(0);" class="filterCheck">查询</a>
+						<a href="javascript:void(0);" class="export">导出</a>
+					</div>
+					<input type="hidden" class="isChange" data-keyWord="" data-bltRegion="" data-taxStation="" data-fenceState="0" data-taxPayer="" data-warnAddress="" data-warnStartTime="" data-warnEndTime="" data-macAddress="" />
+					<div class="f-clear"></div>
+				</div>
+			</div>
+
+			<!-- 企业数据 -->
+			<div class="companyData tableData m-grid">
+				<table class="m-listData">
+					<thead>
+						<tr>
+							<th>企业所属地</th>
+							<th style="width:15%;">所属税务机关</th>
+							<th style="width:15%;">企业名称</th>
+							<th>纳税人标识</th>
+							<th>税号</th>
+							<th>分机号</th>
+							<th>允许开票区域</th>
+							<th>最近开票地点</th>
+							<th>围栏状态</th>
+							<th>企业状态</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div class="noData"></div>
+				<span class="allData f-fl"></span>
+				<!-- 分页 -->
+				<div class="m-paging" id="paging1"></div>
+				<!-- /分页 -->
+			</div>
+
+		</div>
+	</div>
+	<!-- /content -->
+
+	<!-- footer -->
+	<div class="g-footer"></div>
+	<!-- /footer -->
+    <script type="text/html" id="tpl-bltRegion">
+		<div class="provScroll">
+			<ul class="provList">
+				{{each region as k v}}
+				<li class="prov" title="{{k.name}}" data-value="{{k.code}}" data-name="{{k.name}}">
+					{{k.name}}
+					{{if k.city}}
+					<ul class="cityChild">
+						<li class="city" title="全部" data-value="{{k.code}}" data-name="全部">全部</li>
+						{{each k.city as k v}}
+						<li class="city" title="{{k.name}}" data-value="{{k.code}}" data-name="{{k.name}}">
+							{{k.name}}
+						</li>
+						{{/each}}
+					</ul>
+					{{/if}}
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+		<div class="cityScroll"><ul class="cityList"></ul></div>
+    </script>
+	<script type="text/html" id="tpl-warnRegion">
+		<div class="provScroll">
+			<ul class="provList">
+				<li class="prov" title="全国" data-value="" data-name="全国">全国</li>
+				{{each region as k v}}
+				<li class="prov" title="{{k.name}}" data-value="{{k.code}}" data-name="{{k.name}}">
+					{{k.name}}
+					{{if k.city}}
+					<ul class="cityChild">
+						<li class="city" title="全部" data-value="{{k.code}}" data-name="全部">全部</Tli>
+						{{each k.city as k v}}
+						<li class="city" title="{{k.name}}" data-value="{{k.code}}" data-name="{{k.name}}">
+							{{k.name}}
+						</li>
+						{{/each}}
+					</ul>
+					{{/if}}
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+		<div class="cityScroll"><ul class="cityList"></ul></div>
+	</script>
+	<script type="text/javascript" src="../common/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/jQuery/jquery.axnui.js"></script>
+	<script type="text/javascript" src="../common/common.js"></script>
+	<script type="text/javascript" src="../static/script/zUI.js"></script>
+	<script type="text/javascript" src="script/index.js"></script>
+</body>
+</html>

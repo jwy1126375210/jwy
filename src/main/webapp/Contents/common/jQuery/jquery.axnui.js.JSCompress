@@ -1,0 +1,16 @@
+﻿<jscompress public="http://www.jscompress.cn/" command="import-combineset">
+<combinefile path="jquery.axnui.js">
+    <auto value="1" />
+    <sourcefile path=".\jquery.calendar.js" />
+    <sourcefile path=".\jquery.checkradio.js" />
+    <sourcefile path=".\jquery.layer.js" />
+    <sourcefile path=".\jquery.paging.js" />
+    <sourcefile path=".\jquery.select.js" />
+    <sourcefile path=".\jquery.template.js" />
+    <sourcefile path=".\jquery.suggest.js" />
+    <sourcefile path=".\jquery.validate.js" />
+    <sourcefile path=".\jquery.tools.js" />
+    <sourcefile path=".\jquery.placeholder.js" />
+    <sourcefile path=".\init.js" />
+</combinefile>
+</jscompress>

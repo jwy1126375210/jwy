@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+/**
+ * @filename login.css
+ * @author Aniu[2016-08-16 16:01]
+ * @update Aniu[2016-08-16 16:01]
+ * @version v1.1
+ * @description none
+ */
+ 
+.g-content { padding:60px 0;}
+.m-content { margin-left:42px; padding-left:594px; min-height:373px; background:url("../images/bg.jpg?v=a945359") no-repeat left top;}
+.ui-input { width:226px; padding-left:10px; height:30px; line-height:30px; border:1px solid #ccc; background-color:#fff;}
+.ui-input:focus { border-color:#3399FF;}
+.ui-input-short { width:155px;}
+.ui-input.s-dis { border-color:#ccc; background-color:#E6E6E6; color:#ccc;}
+.ui-btn { display:inline-block; padding:0 10px; height:32px; line-height:32px; text-align:center; color:#fff; background-color:#3399FF; cursor:pointer;}
+.ui-btn:hover { color:#fff; text-decoration:none; opacity:.9; filter:alpha(opacity=90);}
+.ui-btn.s-dis { background-color:#D6D6D6;}
+.ui-btn.s-dis:hover { cursor:default; opacity:1; filter:alpha(opacity=100);}
+.ui-btn-code {padding:0; width:71px; height:32px;}
+.ui-btn-submit { padding:0; width:238px; font-size:16px; height:40px;}
+.m-form .item:before, .m-form .item:after { content:''; display:table;}
+.m-form .item:after { clear:both;}
+.m-form .item { *zoom:1;}
+.m-form .item strong, .m-form .item label, .m-form .item .ui-btn, .m-form .item em, .m-form .item span, .m-form .item .ui-input { float:left;}
+.m-form .item .f-fr { float:right;}
+.m-form p.err { height:20px; line-height:20px; clear:both;}
+.m-form label.s-err { color:#f00;}
+.m-form { padding:30px 40px 47px 40px; width:238px; border-left:1px solid #efefef;}
+.m-form legend, .m-form a { color:#3399FF;}
+.m-form legend { width:100%; font-size:16px; text-align:left; color:#333;}
+.m-form .username, .m-form .password { padding-left:33px; width:203px; background-position:10px center; background-repeat:no-repeat;}
+.m-form .username { background-image:url("../images/icon-user.png?v=57b0792");}
+.m-form .password { background-image:url("../images/icon-psw.png?v=b5b37a1");}
+.m-form .result { padding-top:30px;}
+.m-form .result p { font-size:14px; line-height:20px;}
+.m-form .result strong { margin-top:20px; display:block; text-align:center; font-size:14px; color:#73769D;}
+.m-form .result div { margin-top:20px; line-height:20px;}
+.m-form .result div a { margin-left:3px; text-decoration:underline;}
+.g-footer{width:100%; background:#f3f3f3;}
+.g-footer p.copyright{height:40px; line-height:40px; text-align:center; color:#4A4A4A; font-size:11px;}

@@ -1,0 +1,118 @@
+/**
+ * @filename common.css
+ * @author Fy Wang[2016-08-16 10:29]
+ * @update Wang Chijun[2016-11-11 17:01]
+ * @version v1.0
+ * @description 公共css
+ */
+
+/* iconfont */
+@font-face {font-family: "iconfont";
+    src: url('iconfont.eot?t=1495592849293'); /* IE9*/
+    src: url('iconfont.eot?t=1495592849293#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff?t=1495592849293') format('woff'), /* chrome, firefox */
+    url('iconfont.ttf?t=1495592849293') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('iconfont.svg?t=1495592849293#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:14px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-shouqi:before { content: "\e756"; }
+.icon-zhankai:before { content: "\e757"; }
+.icon-sousuo:before { content: "\e758"; }
+.icon-xialaxuanze:before { content: "\e759"; }
+.icon-rili:before { content: "\e75a"; }
+
+body{background: #efeff1;}
+.g-main{width:1200px; margin: 0 auto;}
+select{display: none;}
+.ui-imitselect dt, input{background: #fff;}
+.ui-imitselect dt i{color: #666; font-size: 14px;}
+.ui-imitselect dt i:before{font-family:"iconfont" !important; font-style:normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;content:'\e759';}
+.ui-imitselect dd{top: 38px;}
+.ui-imitselect dd li{height: 28px; line-height: 28px;}
+.m-grid{background: #fff; border: 1px solid #d3d3d3; margin-bottom: 15px;}
+
+/* header css */
+.g-header{height: 60px; background: #f6f9ff; border-bottom: 1px solid #ccc;}
+.m-logo{position: absolute; left: 24px; height: 60px; line-height: 60px;}
+.m-logo h1{color: #3399ff; font-size: 20px;}
+
+/* ui suggest css */
+.ui-suggest{position:absolute; top:178px; width:360px; display:none; z-index:9999; background-color:#fff; border:1px solid #d8d8d8; overflow:hidden;}
+.ui-suggest li{padding-left:5px; height:24px; line-height:24px; cursor: pointer; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.ui-suggest li.s-crt {background-color:#f9f9f9;}
+
+/* filter box css */
+.m-filter{display: none; padding: 30px 25px 0 25px;}
+.m-filter.show{display: block;}
+.m-filter .m-item-list{margin-bottom: 30px;}
+.m-filter .item-option{margin-right: 30px;}
+.m-filter .item-option label{line-height: 40px; color: #8b8b8b; font-weight: bold; letter-spacing: 1.2px; margin-right: 8px; cursor: default;}
+.m-filter .item-option input{text-indent: 4px;}
+.m-filter .item-option a, .m-filter .item-option .ui-imitselect, .m-filter .item-option input{display: inline-block; height: 38px; line-height: 38px; background: #fff; border: 1px solid #d8d8d8; vertical-align: bottom;}
+.m-filter .item-option a{position: relative;}
+.m-filter .item-option a i{position: absolute; right: 8px; color: #666;}
+.m-filter .item-option.actionBox a{width: 96px; margin-left: 25px; color: #fff; background: #3399ff; border: 0; border-radius: 2px; text-align: center;}
+.item-option .ui-imitselect.s-dis dt{background: #fff; color: #d8d8d8;}
+.item-option .ui-imitselect dt strong{line-height: 38px;}
+
+/* .calendar css */
+.ui-calendar{width: 198px; background: #f5f5f5; border: 1px solid #d8d8d8;}
+.ui-calendar-tab{padding-bottom: 0; margin: 0; color: #8b8b8b;}
+.ui-calendar-tab div{font-size: 12px; color:#8b8b8b;}
+.ui-calendar-tab .tabdir{top: 7px;}
+.ui-calendar-tab .tab-left{left: 0;}
+.ui-calendar-tab .tab-right{right: 0;}
+.ui-calendar-tab .prevYear, .ui-calendar-tab .nextYear{display: none;}
+.ui-calendar-tab .prevMonth{margin-left: 0;}
+.ui-calendar-tab .nextMonth{margin-right: 0;}
+.ui-calendar-tab dt, .ui-calendar-tab b{line-height: 26px;}
+.ui-calendar-table td, .ui-calendar-table th{width: 22px; height: auto; padding: 2px 2px 2px 1px;}
+.ui-calendar-table td span, .ui-calendar-table th{font-size: 10px;}
+.ui-calendar-table td span{width: 22px; height: 22px; line-height: 22px; background: #fff; border-radius: 0;}
+.ui-calendar-table td.s-crt span, .ui-calendar-table td.s-sel span{background: #3399ff;}
+.ui-calendar-foot{padding: 10px 0; margin: 0 10px; color: #8b8b8b;}
+.ui-calendar-foot span .confirm{background: #3399ff; border-radius: 0;}
+.ui-calendar-foot span .confirm:hover{background: #3399ff;}
+.ui-calendar-foot em[type="hour"], .ui-calendar-foot em[type="minute"]{position:relative; display: inline-block; width: 36px; text-indent: 3px; background: #fff; padding: 3px 0; margin: 0 2px; border: 1px solid #d8d8d8; cursor: pointer;}
+.ui-calendar-foot em[type="hour"]:after, .ui-calendar-foot em[type="minute"]:after{position: absolute; right: 3px; font-family:"iconfont" !important; font-size:8px; font-style:normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;content:'\e759';}
+.ui-calendar-time{bottom: 65px; border: 1px solid #d8d8d8; border-left: 0;}
+.ui-calendar-timehead{background-color: #d8d8d8;}
+.ui-calendar-timehead i{font-size: 18px; top: 0;}
+.ui-calendar-timebody span{width: 22px; height: 22px; line-height: 22px; cursor: pointer;}
+.ui-calendar-timebody span:hover{background: #f6f9ff;}
+.ui-calendar-timebody span.s-crt{background-color: #0099ff;}
+.ui-calendar-timebody span.s-dis{background: #f9f9f9; color: #f1f1f1;}
+
+/* table css */
+.tableData table{width: 100%; color: #666;}
+.tableData table thead th{height: 54px; line-height: 54px; text-align: center; background: #f7f7f7;}
+.tableData table tbody td{height: 40px; line-height: 40px; text-align: center; border-top: 1px solid #f7f7f7; border-bottom: 2px solid #f7f7f7; overflow: hidden; text-overflow:ellipsis; white-space:nowrap;}
+.allData{color: #999; margin-left: 40px;}
+.noData{display: none; min-height: 400px; background: url("../../static/images/noData.png?") no-repeat 50%;}
+
+/* page css */
+.m-paging{ text-align: right; margin-top: 15px; margin-right: 30px;}
+.ui-paging {display: inline-block;}
+.ui-paging span, .ui-paging a {border: 1px solid #ccc; border-radius:2px; font-size:14px;  width:auto; padding:0 7px;}
+.ui-paging a:hover{color:#3399ff; border-color:#3399ff;}
+.ui-paging span{ border-radius:3px; background-color:#3399ff; border-color:#3399ff; color:#fff;}
+.ui-paging li:nth-child(1) span, .ui-paging li:nth-last-child(2) span{display:inline-block; width:22px; height:22px; border:none; text-indent: -9999px; padding:0;}
+.ui-paging li:nth-child(1) span, .ui-paging li:nth-child(1) a, .ui-paging li:nth-last-child(2) span, .ui-paging li:nth-last-child(2) a{ text-indent: -9999px; background: #fff url("../images/page.png?v=65dac25") no-repeat; border: 1px solid #ccc; width:22px; padding:0;} 
+.ui-paging li:nth-child(1) span,.ui-paging li:nth-last-child(2) span{ background-color: #e0e0e0; }
+.ui-paging li:nth-child(1) a, .ui-paging li:nth-last-child(2) a{background-color: #333; }
+.ui-paging li:nth-child(1) a:hover, .ui-paging li:nth-last-child(2) a:hover{border-color:#3399ff; background-color:#3399ff;}
+.ui-paging li:nth-child(1) span, .ui-paging li:nth-child(1) a{ background-position: 0 -22px; }
+.ui-paging li:nth-last-child(2) span, .ui-paging li:nth-last-child(2) a{ background-position: 0 0px; }
+.ui-paging input{ border:1px solid #dbdbdb; width:30px; height:22px; margin:0 3px; text-align:center; line-height:22px; }
+.ui-paging button{ margin-left:5px; width:45px; height:24px; padding: 0; border:1px solid #a8d4ff; color:#3399FF; background:#fff; cursor:pointer; border-radius: 3px; }
+.ui-paging button:hover{ background-color: #3399FF; border-color:#3399FF; color: #fff;}
+
+/* zUI scroll css */
+.zUIpanelScrollBar{width: 6px; background:#d8d8d8; right:2px; border-radius:6px;}
+.zUIpanelScrollBox{width:6px; background:#f5f5f5; right:2px; border-radius:6px;}
